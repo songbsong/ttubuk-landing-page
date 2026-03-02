@@ -7,10 +7,10 @@ const POLLUTED_IMG = "https://images.unsplash.com/photo-1565879422384-053cc91c8b
 const GREEN_IMG = "https://images.unsplash.com/photo-1761824941886-68132382a8e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmVlbiUyMGx1c2glMjBmb3Jlc3QlMjBuYXR1cmUlMjBjbGVhbiUyMGVudmlyb25tZW50fGVufDF8fHx8MTc3MjE4NTg1Nnww&ixlib=rb-4.1.0&q=80&w=1080";
 
 const reasons = [
-  { icon: Leaf, title: "지속 가능한 습관", desc: "매일 걸으며 환경을 보호하는 습관이 자연스럽게 형성됩니다.", color: "#1EB25F" },
-  { icon: Users, title: "함께 만드는 변화", desc: "크루와 함께 더 큰 임팩트를 만들고 순위를 경쟁하세요.", color: "#1A3C34" },
-  { icon: Trophy, title: "게임처럼 즐겁게", desc: "포인트, 레벨업, 리워드로 환경 보호가 재미있어집니다.", color: "#FFDA00" },
-  { icon: Recycle, title: "실질적 임팩트", desc: "AI가 쓰레기를 인식해 실제 수거량과 환경 기여도를 측정합니다.", color: "#1EB25F" },
+  { icon: Leaf, title: "지속 가능한 습관", desc: "매일 걸으며 환경을 보호하는 습관이 자연스럽게 형성됩니다.", color: "#1EB25F", bgColor: "rgba(30, 178, 95, 0.12)" },
+  { icon: Users, title: "함께 만드는 변화", desc: "크루와 함께 더 큰 임팩트를 만들고 순위를 경쟁하세요.", color: "#2563EB", bgColor: "rgba(37, 99, 235, 0.12)" },
+  { icon: Trophy, title: "게임처럼 즐겁게", desc: "포인트, 레벨업, 리워드로 환경 보호가 재미있어집니다.", color: "#D97706", bgColor: "rgba(217, 119, 6, 0.12)" },
+  { icon: Recycle, title: "실질적 임팩트", desc: "AI가 쓰레기를 인식해 실제 수거량과 환경 기여도를 측정합니다.", color: "#7C3AED", bgColor: "rgba(124, 58, 237, 0.12)" },
 ];
 
 export function TtubukAbout() {
@@ -198,37 +198,34 @@ export function TtubukAbout() {
         </motion.div>
 
         {/* Why cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 mb-10">
           {reasons.map((item, i) => (
             <motion.div
               key={item.title}
-              className="group relative p-6 rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+              className="group relative p-8 rounded-3xl bg-white/60 backdrop-blur-md border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:bg-white/90 transition-all duration-500 overflow-hidden flex flex-col items-start"
               initial={{ y: 50, opacity: 0 }}
               animate={isInView ? { y: 0, opacity: 1 } : {}}
               transition={{ duration: 0.7, delay: 0.5 + i * 0.1 }}
-              whileHover={{ y: -4 }}
+              whileHover={{ y: -6 }}
             >
-              {/* Color accent bar */}
               <div
-                className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl"
-                style={{ backgroundColor: item.color }}
-              />
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
-                style={{ backgroundColor: item.color === "#FFDA00" ? "#FFFBDE" : item.color === "#1EB25F" ? "#E8F8EE" : "#E8EFF0" }}
+                className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-sm transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
+                style={{ backgroundColor: item.bgColor }}
               >
                 <item.icon
-                  className="w-6 h-6"
+                  className="w-7 h-7 transition-colors duration-300"
                   style={{ color: item.color }}
+                  strokeWidth={2}
                 />
               </div>
               <h3
-                className="mb-2"
+                className="mb-3"
                 style={{
                   fontFamily: "var(--font-headline)",
                   color: "#1A3C34",
                   fontWeight: 700,
-                  fontSize: "1.05rem",
+                  fontSize: "1.15rem",
+                  letterSpacing: "-0.01em"
                 }}
               >
                 {item.title}
@@ -237,9 +234,10 @@ export function TtubukAbout() {
                 style={{
                   fontFamily: "var(--font-body)",
                   color: "#1A3C34",
-                  opacity: 0.7,
-                  fontSize: "0.9rem",
+                  opacity: 0.75,
+                  fontSize: "0.95rem",
                   lineHeight: 1.6,
+                  wordBreak: "keep-all"
                 }}
               >
                 {item.desc}
